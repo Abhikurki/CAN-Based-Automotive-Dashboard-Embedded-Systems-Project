@@ -2,17 +2,18 @@
  * File:   can.c
  * Author: DELL
  *
- * Created on March 24, 2026, 9:41 PM
+ * Created on March 25, 2026, 4:19 PM
  */
 
 
+/*File for CAN configuration , setting message id's, Data Transmission, */
 #include <xc.h>
 #include "can.h"
-//#include "clcd.h"
+#include "clcd.h"
 
 /* CAN operation mode values*/
 typedef enum _CanOpMode {
-    /* Use this to access opmode bits */
+    /* Use this to access op mode bits */
     e_can_op_mode_normal = 0x00,
     e_can_op_mode_loop = 0x40,
     e_can_op_mode_config = 0x80
@@ -24,7 +25,7 @@ void init_can(void) {
     TRISB2 = 0; /* CAN TX */
     TRISB3 = 1; /* CAN RX */
 
-    /* Enter CAN module into config mode */
+    /* Enter CAN module into configure mode */
     /* clear previous mode */
     CAN_SET_OPERATION_MODE_NO_WAIT(e_can_op_mode_config); /* set new mode */
 

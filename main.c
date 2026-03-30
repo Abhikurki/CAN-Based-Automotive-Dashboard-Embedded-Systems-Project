@@ -2,48 +2,51 @@
  * File:   main.c
  * Author: DELL
  *
- * Created on March 24, 2026, 5:57 PM
+ * Created on March 25, 2026, 4:20 PM
  */
 
 
-#include<xc.h>
-#include "adc.h"
-#include"digital_keypad.h"
-#include"msg_id.h"
-#include"uart.h"
-#include"can.h"
-#include"ecu1_sensor.h"
-//#include"clcd.h"
+#include <xc.h>
+//#include <stdint.h>
+#include "can.h"
+#include "clcd.h"
+#include "msg_id.h"
+#include "message_handler.h"
+#include "timer0.h"
+#include"adc.h"
+#include"matrix_keypad.h"
+
+void init_leds() {
+    TRISB = 0x00; 
+    PORTB = 0x00;
+}
 
 static void init_config(void) {
-    init_adc();
-    init_digital_keypad();
-    //    init_uart();
+    // Initialize CLCD and CANBUS
+    init_clcd();
+    
+    init_leds();
     init_can();
-    //init_clcd();
+//    init_adc();
+//    init_matrix_keypad();
+//    init_timer0();
+    // Enable Interrupts
+//    PEIE = 1;
+//    GIE = 1;
 }
-uint16_t msg_id;
-unsigned char data[8];
-unsigned char len;
-
-int main() {
-    unsigned char arr[][3]={"RG","NG","G1","G2","G3","G4","G5","CC"};
+uint8_t data[8];
+uint8_t len;
+void main(void) {
+    // Initialize peripherals
     init_config();
 
-    while (1) {
-        int speed = get_speed();
-
-        char buff[2];
-        buff[0] = (speed / 10) + '0';
-        buff[1] = (speed % 10) + '0';
-        buff[2]='\0';
-
-        can_transmit(SPEED_MSG_ID, buff, 2);
-        for (int wait = 2000; wait--;);
-
-        char gear = get_gear_pos();
-        can_transmit(GEAR_MSG_ID, &gear, 1);
-        for (int wait = 2000; wait--;);
-
+    /* ECU1 main loop */
+    clcd_print("SP GE RPM  IND",LINE1(0));
+    while (1) 
+    {
+        // Read CAN Bus data and handle it
+        process_canbus_data();
+//         handle_indicator_data(data,len);
+//         __delay_ms(300);
     }
 }
