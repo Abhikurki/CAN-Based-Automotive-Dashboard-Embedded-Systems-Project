@@ -7,7 +7,7 @@ This tutorial helps you find and access source code for different ECU nodes (ECU
 
 ## 🔹 Step 1: Open the Repository  
 - Go to your GitHub repository in a browser  
-- Example: https://github.com/your-username/your-repo  
+- Example: https://github.com/Abhikurki/CAN-Based-Automotive-Dashboard-Embedded-Systems-Project.git
 
 ---
 
