@@ -2,7 +2,7 @@
  * File:   adc.h
  * Author: DELL
  *
- * Created on March 24, 2026, 6:05 PM
+ * Created on March 24, 2026, 9:46 PM
  */
 
 #ifndef ADC_H

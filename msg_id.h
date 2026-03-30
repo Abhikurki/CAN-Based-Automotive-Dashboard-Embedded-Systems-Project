@@ -2,15 +2,15 @@
  * File:   msg_id.h
  * Author: DELL
  *
- * Created on March 24, 2026, 6:01 PM
+ * Created on March 24, 2026, 9:49 PM
  */
 
 #ifndef MSG_ID_H
 #define	MSG_ID_H
 
-#define SPEED_MSG_ID    0x10
-#define GEAR_MSG_ID     0x20
-#define RPM_MSG_ID      0x30
+#define SPEED_MSG_ID 0x10
+#define GEAR_MSG_ID 0x20
+#define RPM_MSG_ID 0x30
 #define ENG_TEMP_MSG_ID 0x40
 #define INDICATOR_MSG_ID 0x50
 
